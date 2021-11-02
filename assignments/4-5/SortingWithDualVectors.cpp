@@ -31,7 +31,7 @@ void initVectors(vector<int> &IDs, vector<string> &names, int N){
 			cerr << "File Read Error\n";
 			exit(0);
 		}
-    }
+  }
     
 }
 void sortVectors(vector<int> &IDs, vector<string> &names, int N){
@@ -56,7 +56,7 @@ void sortVectors(vector<int> &IDs, vector<string> &names, int N){
 }
 void printVectors(vector<int> IDs, vector<string> names, int N){
     for(int i = 0; i < N; i++){
-        cout << IDs[i] << "\t" << names[i];
+        cout << IDs[i] << "\t" << names[i] << "\n";;
     cout << endl;
     }
 }
