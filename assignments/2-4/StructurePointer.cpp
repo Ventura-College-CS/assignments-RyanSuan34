@@ -7,94 +7,90 @@ const int NUM_SCORES = 3;
 
 struct Students
 {
-    int sid;
-    char sname[MAX_LEN];
-    double scores[NUM_SCORES];
+  int sid;
+  char sname[MAX_LEN];
+  double scores[NUM_SCORES];
+  double total_score;
 };
 
 Students *makeStudents(int);
 void printStudents(Students * const, int);
 void sortStudents(Students * const, int);
+void editStudentValue(Students *i, Students *j);
 
 Students *makeStudents(int N)
 {
-    ifstream ifs;
-    Students *ptr = new Students[N];
+  ifstream ifs;
+  Students *ptr = new Students[N];
 
-    ifs.open("assignments/2-4/students.txt");
-    if (ifs.fail())
+  ifs.open("assignments/2-4/students.txt");
+  if (ifs.fail())
+  {
+    cerr << "Error unable to open file\n";
+    exit(0);
+  }
+
+  for (int i = 0; i < N; i++)
+  {
+    ifs >> (ptr+i) ->sid >> (ptr+i)->sname;
+    for (int j = 0; j < NUM_SCORES; j++)
     {
-        cerr << "Error unable to open file\n";
+      ifs >> (ptr+i)->scores[j];
+      if (ifs.fail())
+      {
+        cerr << "File Read Error";
         exit(0);
+      }
     }
-
-    for (int i = 0; i < N; i++)
-    {
-        ifs >> (ptr+i) ->sid >> (ptr+i)->sname;
-        for (int j = 0; j < NUM_SCORES; j++)
-        {
-            ifs >> (ptr+i)->scores[j];
-            if (ifs.fail())
-            {
-                cerr << "File Read Error";
-                exit(0);
-            }
-        }
-    }
-    ifs.close();
-    return ptr;
+  }
+  ifs.close();
+  return ptr;
 }
 
 void printStudents(Students * const ptr, int N)
 {
-    for (int i = 0; i < N; i++)
-    {
-        cout << (ptr+i)->sid << " ";
-        cout << (ptr+i)->sname << " ";
-        for (int j = 0; j < NUM_SCORES; j++)
-            cout << (ptr+i)-> scores[j] << " ";
-        cout << endl;
-    }
+  for (int i = 0; i < N; i++)
+  {
+    cout << (ptr+i)->sid << " ";
+    cout << (ptr+i)->sname << " ";
+    for (int j = 0; j < NUM_SCORES; j++)
+        cout << (ptr+i)-> scores[j] << " ";
+    cout << endl;
+  }
 }
 
 void sortStudents(Students * const ptr, int N)
 {
-    double *sumptr = new double[N]; 
-    double sum;
-    for (int i = 0; i < N; i++)
-    {
-        sum = 0;
-        for (int j = 0; j < NUM_SCORES; j++)
-            sum += (ptr+i)->scores[j];
-        *(sumptr+i) = sum; 
+  for(int i = 0; i < N-1; i++)
+  {
+    for (int j = i+1; j < N ; j++)
+    {   
+      Students tmp1, tmp2;
+      tmp1 = tmp2;
+      if ((ptr+i)->total_score > (ptr+j)->total_score)
+      {
+        editStudentValue(ptr+i, ptr+j);
+      }
     }
-    for (int i = 0; i < N; i++)
-    {
-        for (int j = i+1; j < N; j++)
-        {
-            if (*(sumptr+i) > *(sumptr+j)) 
-            {
-                Students temp = *(ptr+i);
-                *(ptr+i) = *(ptr+j);
-                *(ptr+j) = temp;  
-                sum = *(sumptr+i); 
-                *(sumptr+i) = *(sumptr+j);
-                *(sumptr+j) = sum;
-            }
-        }
-    }
-    delete sumptr;
+  }
+}
+
+void editStudentValue(Students *i, Students *j)
+{
+  Students temp = *i;
+  *i = *j;
+  *j = temp;
 }
 
 int main()
 {
-    const int N = 10;
-    Students *ptr;
+  const int N = 10;
+  Students *ptr;
 
-    ptr = makeStudents(N);
-    printStudents(ptr, N);
-    cout << "\nStudents sorted by score sum\n";
-    sortStudents(ptr, N);
-    printStudents(ptr, N);
-    delete ptr; 
+  ptr = makeStudents(N);
+  printStudents(ptr, N);
+  cout << "\nStudents sorted by score sum\n";
+  sortStudents(ptr, N);
+  printStudents(ptr, N);
+  delete ptr; 
 }
