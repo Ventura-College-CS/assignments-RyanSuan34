@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <queue>
+#include <string>
 using namespace std;
 
 class Student
@@ -8,18 +10,21 @@ class Student
     int SID;
     string SName;
     double *scores;
+    int numScores;
   public: 
     Student()
     {
       SID=0;
       SName="";
       scores=nullptr;
+      numScores=0;
     }
-    Student(int i, string name, double *sc)
+    Student(int i, string name, double *sc, int n)
     {
       SID=i;
       SName=name;
       scores=sc;
+      numScores=n;
     }
     int getID()
     {
