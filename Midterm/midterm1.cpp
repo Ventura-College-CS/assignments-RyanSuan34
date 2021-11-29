@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector> 
+#include "midterm1.hpp"
 using namespace std;
 
 class Student
@@ -33,4 +34,4 @@ class Student
     {
       return scores;
     }
-}
+};
