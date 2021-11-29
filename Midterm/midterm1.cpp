@@ -21,4 +21,16 @@ class Student
       SName=name;
       scores=sc;
     }
+    int getID()
+    {
+      return SID;
+    }
+    string getName()
+    {
+      return SName;
+    }
+    double *getScores()
+    {
+      return scores;
+    }
 }
