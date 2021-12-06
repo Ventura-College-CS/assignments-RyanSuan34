@@ -27,9 +27,9 @@ int main()
   int index = binarySearch(array, f, l, target);
 
   if (index != -1)
-    printf("Elemnt found at index %d", index);
+    printf("Element found at index %d", index);
   else
-    printf("Elemnt not found in the array");
+    printf("Element not found in the array");
   cout << endl; 
   return 0;
 }
