@@ -2,29 +2,41 @@
 using namespace std;
 #include "VectorQueue.hpp"
 
-int main()
+template<class T, int size>
+VectorQueue<T,size>::VectorQueue(){
+  this.size=size;
+  queue.resize(size);
+}
+
+template<class T, int size>
+void VectorQueue<T,size>::enqueue(T data) 
 {
-  VectorQueue<int, 7>q;
+  if(isFull()) 
+  {
+    cout << "Queue is full" << endl;
+    return;
+  }
+  queue.push_back(data);
+}
 
-  q.enque(13);
-  q.enque(4);
-  q.enque(6);
-  q.enque(2);
-  q.enque(5);
-  q.enque(1);
-  q.enque(7);
+template<class T, int size>
+T VectorQueue<T,size>::dequeue() 
+{
+  if(isEmpty()) 
+    cout << "Queue is Empty" << endl;
+  T topData = queue.front();
+  queue.pop_front();
+  return topData;
+}
 
-  if(q.isFull())
-    cout <<"Queue is Full \n";
-  
-  cout << q.deque() << endl;
-  cout << q.deque() << endl;
-  cout << q.deque() << endl;
-  cout << q.deque() << endl;
-  cout << q.deque() << endl;
-  cout << q.deque() << endl;
-  cout << q.deque() << endl;
+template<class T, int size>
+bool VectorQueue<T,size>::isEmpty() 
+{
+  return queue.size() == 0;
+}
 
-  if(q.isEmpty())
-    cout << "Queue is Empty \n";
+template<class T, int size>
+bool VectorQueue<T,size>::isFull() 
+{
+  return queue.size() == size;
 }
