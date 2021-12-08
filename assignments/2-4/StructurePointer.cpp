@@ -20,7 +20,7 @@ void sortStudents(Students * const, int);
 Students *makeStudents(int N)
 {
   ifstream ifs;
-  Students    *ptr= new Students [N];
+  Students *ptr= new Students [N];//dynamic memory
 
   ifs.open("assignments/2-4/students.txt");
   if ( ifs.fail())
@@ -31,7 +31,7 @@ Students *makeStudents(int N)
 
 for(int i=0;i<N; i++)
   {
-    ifs >> (ptr+i)->sid >> (ptr+i)->sname;
+    ifs >> (ptr+i)->sid >> (ptr+i)->sname;//change prt to dynamic
 
     for(int j=0; j<NUM_SCORES; j++)
       ifs >> (ptr+i)->scores[j] ;
@@ -44,7 +44,7 @@ for(int i=0;i<N; i++)
   return ptr;
 }
 
-void printStudents(Students *ptr, int N)
+void printStudents(Students *ptr, int N)//prints all the students
 {
 	for(int i=0; i<N;i++)
 	{
@@ -64,19 +64,18 @@ void sortStudents(Students *ptr, int N)
   for(int i = 0; i < N; i++)
   {
     sum1 = 0, sum2 = 0;
-    for(int j=0; j < N-1; j++)
+    for(int j=0; j < N-1; j++)//need another loop to compare adjacent students pairs.
     {
-      for(int k=0; k < 3; k++)
+      for(int k=0; k < 3; k++)//need another loop/stament to acquire sum of studnet
       {  
         sum1 += (ptr+j)->scores[k];
         sum2 += (ptr+j+1)->scores[k];
       }    
-      if( sum1 > sum2)
+      if( sum1 > sum2)//compares the sum and if sum1>sum2 then the struct Student will be swapped 
       {
-        swap ( *(ptr+j), *(ptr+j+1));
+        swap ( *(ptr+j), *(ptr+j+1));//swap(left studnet pointer, right student pointer)
       }
     }
-
   }
 }
 
@@ -85,7 +84,7 @@ int main()
   const int N = 10;
   Students    *ptr;
 
-  ptr = makeStudents(N); //gotta make it loop
+  ptr = makeStudents(N);
 	printStudents(ptr, N);
   sortStudents(ptr, N);
 	cout << "After sorting" << endl;
