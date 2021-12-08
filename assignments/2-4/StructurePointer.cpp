@@ -1,96 +1,94 @@
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 using namespace std;
 
-const int MAX_LEN = 20;
-const int NUM_SCORES = 3;
+const int 	MAX_LEN = 20;
+const int 	NUM_SCORES = 3;
 
-struct Students
+struct Students 
 {
-  int sid;
-  char sname[MAX_LEN];
-  double scores[NUM_SCORES];
-  double total_score;
+	int 	sid;
+	char 	sname[MAX_LEN];
+	double 	scores[NUM_SCORES];
 };
 
-Students *makeStudents(int);
+Students *makeStudents(int N);
 void printStudents(Students * const, int);
 void sortStudents(Students * const, int);
-void editStudentValue(Students *i, Students *j);
 
 Students *makeStudents(int N)
 {
   ifstream ifs;
-  Students *ptr = new Students[N];
+  Students    *ptr= new Students [N];
 
   ifs.open("assignments/2-4/students.txt");
-  if (ifs.fail())
+  if ( ifs.fail())
   {
-    cerr << "Error unable to open file\n";
+    cerr << "File open error\n";
     exit(0);
   }
 
-  for (int i = 0; i < N; i++)
+for(int i=0;i<N; i++)
   {
-    ifs >> (ptr+i) ->sid >> (ptr+i)->sname;
-    for (int j = 0; j < NUM_SCORES; j++)
+    ifs >> (ptr+i)->sid >> (ptr+i)->sname;
+
+    for(int j=0; j<NUM_SCORES; j++)
+      ifs >> (ptr+i)->scores[j] ;
+    if ( ifs.fail() )
     {
-      ifs >> (ptr+i)->scores[j];
-      if (ifs.fail())
-      {
-        cerr << "File Read Error";
-        exit(0);
-      }
+    cerr << "File Read Error\n";
+    exit(0);
     }
   }
-  ifs.close();
   return ptr;
 }
 
-void printStudents(Students * const ptr, int N)
+void printStudents(Students *ptr, int N)
 {
-  for (int i = 0; i < N; i++)
-  {
-    cout << (ptr+i)->sid << " ";
-    cout << (ptr+i)->sname << " ";
-    for (int j = 0; j < NUM_SCORES; j++)
-        cout << (ptr+i)-> scores[j] << " ";
-    cout << endl;
-  }
+	for(int i=0; i<N;i++)
+	{
+		cout << (ptr+i)->sid << "\t";
+		cout << (ptr+i)->sname << "\t";
+		for(int j=0;j<3; j++)
+			cout << (ptr+i)->scores[j] << "\t";
+	  cout << endl;
+	}
 }
 
-void sortStudents(Students * const ptr, int N)
+void sortStudents(Students *ptr, int N)
 {
-  for(int i = 0; i < N-1; i++)
+  double sum1 = 0, sum2 = 0;
+  
+
+  for(int i = 0; i < N; i++)
   {
-    for (int j = i+1; j < N ; j++)
-    {   
-      Students tmp1, tmp2;
-      tmp1 = tmp2;
-      if ((ptr+i)->total_score > (ptr+j)->total_score)
+    sum1 = 0, sum2 = 0;
+    for(int j=0; j < N-1; j++)
+    {
+      for(int k=0; k < 3; k++)
+      {  
+        sum1 += (ptr+j)->scores[k];
+        sum2 += (ptr+j+1)->scores[k];
+      }    
+      if( sum1 > sum2)
       {
-        editStudentValue(ptr+i, ptr+j);
+        swap ( *(ptr+j), *(ptr+j+1));
       }
     }
-  }
-}
 
-void editStudentValue(Students *i, Students *j)
-{
-  Students temp = *i;
-  *i = *j;
-  *j = temp;
+  }
 }
 
 int main()
 {
   const int N = 10;
-  Students *ptr;
+  Students    *ptr;
 
-  ptr = makeStudents(N);
-  printStudents(ptr, N);
-  cout << "\nStudents sorted by score sum\n";
+  ptr = makeStudents(N); //gotta make it loop
+	printStudents(ptr, N);
   sortStudents(ptr, N);
-  printStudents(ptr, N);
-  delete ptr; 
+	cout << "After sorting" << endl;
+	printStudents(ptr, N);
+
 }

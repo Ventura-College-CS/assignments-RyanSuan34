@@ -8,8 +8,8 @@ int main() {
   VectorQueue<int,10> q;
 
   for(int i = 0; i < 10; i++) 
-    q.enque(rand() % 10);
+    q.enqueue(rand() % 10);
   for(int i = 0; i < 3; i++) 
-    q.deque();
+    q.dequeue();
   return 0;
 }
