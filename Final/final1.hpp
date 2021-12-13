@@ -33,6 +33,11 @@ class Course{
     void setCourseC(int credit){
       courseC=credit;
     }
+    void swap(int *a, int *b){
+      int t = *a;
+      *a = *b;
+      *b = t;
+    }
 };
 
 #endif
