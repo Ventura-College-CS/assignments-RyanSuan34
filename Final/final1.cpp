@@ -10,12 +10,12 @@ int binarySearch(Course array[], int select, int first, int last){
     if(array[mid].getID()==select)
       return mid;
     else if(array[mid].getID() < select)
-      return binarySearch(array, select, mid+1, last, target);
+      return binarySearch(array, select, mid+1, last);
     else
-      return 
+      return binarySearch(array, select, first, mid-1);
   }
   return -1;
-}
+}//changed from iterative to recursive because of unkown issues with while loop
 
 int main(){
   Course arr[10];
@@ -67,9 +67,9 @@ int main(){
   int n=sizeof(arr)/sizeof(arr[0]);
   int first = 0;
   int last = n-1;
-  cout << arr[0].getName() << endl;
+  //cout << arr[0].getName() << endl; (debugging for binarySearch issue)
   int x = binarySearch(arr, select, first, last);
-  cout << arr[0].getName() << endl;
+  //cout << arr[0].getName() << endl; (debugging for binarySearch issue)
 
   if(x != -1){
     cout << "Course ID: " << arr[select].getID() << endl;
