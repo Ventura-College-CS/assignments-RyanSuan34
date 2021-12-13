@@ -7,7 +7,7 @@ using namespace std;
 void qsort(Course [], int, int);
 int partition(Course [], int, int);
 
-void qsort(Course arr[], int first, int last){
+void qsort(int arr[], int first, int last){
   int pivot_index;
   if (first >= last)
     return; 
@@ -16,12 +16,12 @@ void qsort(Course arr[], int first, int last){
   qsort(arr, pivot_index+1, last);
 }
 
-int partition(Course arr[], int first, int last){
+int partition(int arr[], int first, int last){
   int pivot = arr[last];
-  int i=-1;
+  int i=(first-1);
   for (int j=0; j<last; j++){
-    if(arr[j] < pivot)
-      swap(arr[i++], num[j]);
+    if(arr[j] <= pivot)
+      swap(arr[i++], arr[j]);
   }
   swap(arr[i+1],arr[last]);
   return i+1;
@@ -75,7 +75,7 @@ int main(){
   cin >> select;
 
   int n=sizeof(arr)/sizeof(arr[0]);
-  qsort(arr, 0, n-1)
+  qsort(arr, 0, n-1);
   for(int i=0; i<n;i++)
     cout arr[i]<<" "
 }
