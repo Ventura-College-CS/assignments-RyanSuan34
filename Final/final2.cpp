@@ -19,7 +19,7 @@ void qsort(Course arr[], int first, int last){
 
 int partition(Course arr[], int first, int last){
   int pivot = arr[last].getID();
-  int i=(first-1);
+  int i=-1;
   for (int j=0; j<last; j++){
     if(arr[j].getID() >= pivot)
       swap(arr[i++], arr[j]);
