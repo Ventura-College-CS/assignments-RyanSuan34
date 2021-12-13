@@ -7,9 +7,9 @@ using namespace std;
 int binarySearch(Course array[], int target, int first, int last){
   int mid = (first + last)/2;
   while (first <= last){
-    if (arr[mid].getID()==target)
+    if (array[mid].getID()==target)
       return mid;
-    else if (arr[mid].getID()<target)
+    else if (array[mid].getID()<target)
       first = mid+1;
     else 
       last = mid-1;
@@ -70,6 +70,10 @@ int main(){
   int index = binarySearch(arr, select, first, last);
 
   if(index != -1){
-    
+    cout << "Course ID: " << arr[select].getID() << endl;
+    cout << "Course Name: " << arr[select].getName() << endl;
+    cout << "Credit: " << arr[select].getCredit() << endl;
   }
+  else
+    cout << "Course cannot be found";
 }
