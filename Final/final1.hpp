@@ -15,9 +15,24 @@ class Course{
       courseN=n;
       courseC=c;
     }
-    int getID() {return courseID;}
-    string getName(){return courseN;}
-    int getCredit() {return courseC;}
+    int getID() {
+      return courseID;
+    }
+    string getName(){
+      return courseN;
+    }
+    int getCredit() {
+      return courseC;
+    }
+    void setCourseID(int id){
+      courseID=id;
+    }
+    void setCourseN(string name){
+      courseN=name;
+    }
+    void setCourseC(int credit){
+      courseC=credit;
+    }
 };
 
 #endif
