@@ -4,10 +4,6 @@
 using namespace std;
 
 class Course{
-  private:
-    int courseID;
-    string courseN;
-    int courseC;
-  public:
+
     
 }
