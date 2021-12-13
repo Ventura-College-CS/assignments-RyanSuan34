@@ -7,20 +7,20 @@ using namespace std;
 void qsort(Course [], int, int);
 int partition(Course [], int, int);
 
-void qsort(int arr[], int first, int last){
+void qsort(Course arr[], int first, int last){
   int pivotin;
   if (first >= last)
-    return; 
+    return;
   pivotin = partition(arr, first, last);
   qsort(arr, first, pivotin-1);
   qsort(arr, pivotin+1, last);
 }
 
-int partition(int arr[], int first, int last){
-  int pivot = arr[last];
+int partition(Course arr[], int first, int last){
+  int pivot = arr[last].getID();
   int i=(first-1);
   for (int j=0; j<last; j++){
-    if(arr[j] <= pivot)
+    if(arr[j].getID() >= pivot)
       swap(arr[i++], arr[j]);
   }
   swap(arr[i+1],arr[last]);
