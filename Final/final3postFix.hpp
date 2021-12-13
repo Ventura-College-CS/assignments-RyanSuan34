@@ -14,7 +14,7 @@ class PostFixE{
     PostFixE(string);
     void setExpress(string);
     void printExpress()const;
-    int Solve;
+    int Evaluation();
 };
 
 #endif
