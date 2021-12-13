@@ -13,7 +13,7 @@ int binarySearch(Course array[], int select, int first, int last){
   //    first = mid+1;
   //  else
   //    last = mid-1;
-  }
+  //}
   if (first <= last){
     if(array[mid].getID()==select)
       return mid;
