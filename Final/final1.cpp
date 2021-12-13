@@ -65,7 +65,7 @@ int main(){
   cin >> select;
 
   int n=sizeof(arr)/sizeof(arr[0]);
-  int first =0;
+  int first = 0;
   int last = n-1;
   int index = binarySearch(arr, select, first, last);
 
