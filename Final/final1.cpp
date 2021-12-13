@@ -6,6 +6,14 @@ using namespace std;
 
 int binarySearch(Course array[], int select, int first, int last){
   int mid = (first + last)/2;
+  //while(first <= last){
+  //  if(array[mid].getID()==select)
+  //   return mid;
+  //  else if(array[mid].getID() < select)
+  //    first = mid+1;
+  //  else
+  //    last = mid-1;
+  }
   if (first <= last){
     if(array[mid].getID()==select)
       return mid;
@@ -16,6 +24,8 @@ int binarySearch(Course array[], int select, int first, int last){
   }
   return -1;
 }//changed from iterative to recursive because of unkown issues with while loop
+
+
 
 int main(){
   Course arr[10];

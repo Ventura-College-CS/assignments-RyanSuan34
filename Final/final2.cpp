@@ -8,12 +8,12 @@ void qsort(Course [], int, int);
 int partition(Course [], int, int);
 
 void qsort(int arr[], int first, int last){
-  int pivot_index;
+  int pivotin;
   if (first >= last)
     return; 
-  pivot_index = partition(arr, first, last);
-  qsort(arr, first, pivot_index-1);
-  qsort(arr, pivot_index+1, last);
+  pivotin = partition(arr, first, last);
+  qsort(arr, first, pivotin-1);
+  qsort(arr, pivotin+1, last);
 }
 
 int partition(int arr[], int first, int last){
