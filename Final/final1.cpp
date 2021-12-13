@@ -4,15 +4,15 @@
 #include <ctime>
 using namespace std;
 
-int binarySearch(Course array[], int target, int first, int last){
+int binarySearch(Course array[], int select, int first, int last){
   int mid = (first + last)/2;
-  while (first <= last){
-    if (array[mid].getID()==target)
+  if (first <= last){
+    if(array[mid].getID()==select)
       return mid;
-    else if (array[mid].getID()<target)
-      first = mid+1;
-    else 
-      last = mid-1;
+    else if(array[mid].getID() < select)
+      return binarySearch(array, select, mid+1, last, target);
+    else
+      return 
   }
   return -1;
 }
@@ -67,9 +67,11 @@ int main(){
   int n=sizeof(arr)/sizeof(arr[0]);
   int first = 0;
   int last = n-1;
-  int index = binarySearch(arr, select, first, last);
+  cout << arr[0].getName() << endl;
+  int x = binarySearch(arr, select, first, last);
+  cout << arr[0].getName() << endl;
 
-  if(index != -1){
+  if(x != -1){
     cout << "Course ID: " << arr[select].getID() << endl;
     cout << "Course Name: " << arr[select].getName() << endl;
     cout << "Credit: " << arr[select].getCredit() << endl;
