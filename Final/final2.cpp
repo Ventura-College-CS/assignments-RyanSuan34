@@ -6,6 +6,7 @@ using namespace std;
 
 void qsort(Course [], int, int);
 int partition(Course [], int, int);
+void printCourses(Course arr[], int n);
 
 void qsort(Course arr[], int first, int last){
   int pivotin;
@@ -25,6 +26,15 @@ int partition(Course arr[], int first, int last){
   }
   swap(arr[i+1],arr[last]);
   return i+1;
+}
+
+void printCourses(Course arr[], int n){
+  for(int i=0; i<n; i++){
+    cout << "Course ID: " << arr[i].getID() << endl;
+    cout << "Course Name: " << arr[i].getName() << endl;
+    cout << "Credit: " << arr[i].getCredit() << endl;
+    cout << endl;
+  }
 }
 
 int main(){
@@ -71,11 +81,8 @@ int main(){
   arr[9].setCourseN("Chemistry");
   arr[9].setCourseC(1);
 
-  cout << "Enter Course ID (0-9): ";
-  cin >> select;
-
   int n=sizeof(arr)/sizeof(arr[0]);
   qsort(arr, 0, n-1);
-  for(int i=0; i<n;i++)
-    cout arr[i]<<" "
+  cout << "Sorted"<< endl;
+  printCourses(arr, 10);
 }
