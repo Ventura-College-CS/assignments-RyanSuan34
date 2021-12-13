@@ -20,17 +20,17 @@ int isOp(char op){
 int solve(int num1, int num2, char op){
   int result;
   switch (op){
+    case '*':
+      result = num1 * num2;
+      break;
+    case '/':
+      result = num1 / num2;
+      break;
     case '+':
       result = num1 + num2;
       break;
     case '-':
       result = num1 - num2;
-      break;
-    case '*':
-      result = num1 * num2;
-      break;
-    case '/':
-      result = num1/num2;
       break;
     default:
       cout << "Error: Undefined operator error" << endl;
@@ -45,12 +45,15 @@ int main(){
   Stack<int, n> stack;
   char input;
   int num1, num2, result;
-  string exression
+  string expression;
+  cout << "Input an expression: ";
+  cin >> expression;
+  cout << endl;
 
   for(int i=0; i < expression.size();i++){
     input=expression[i];
     if(isdigit(input))
-      stack.push(int(input)-offest);
+      stack.push(int(input)-offset);
     else if (isOp(input))
     {
       num1 = stack.pop();
