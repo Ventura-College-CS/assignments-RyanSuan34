@@ -17,7 +17,7 @@ int isOp(char op){
   }
 }
 
-int solve(int num1, num2, char op){
+int solve(int num1, int num2, char op){
   int result;
   switch (op){
     case '+':
@@ -36,5 +36,29 @@ int solve(int num1, num2, char op){
       cout << "Error: Undefined operator error" << endl;
       exit(0);
   }
+  return result;
+}
+
+int main(){
+  const int n=20;
+  const int offset=48;
+  Stack<int, n> stack;
+  char input;
+  int num1, num2, result;
+  string exression
+
+  for(int i=0; i < expression.size();i++){
+    input=expression[i];
+    if(isdigit(input))
+      stack.push(int(input)-offest);
+    else if (isOp(input))
+    {
+      num1 = stack.pop();
+      num2 = stack.pop();
+      result = solve(num1, num2, input);
+      stack.push(result);
+    }
+  }
+  cout<<"Result: "<< stack.pop()<< endl;
   return result;
 }
